@@ -1,20 +1,26 @@
-# ShopCore E-commerce System (sesd-ecommerce-system)
-A premium tech accessories e-commerce platform built with modern software engineering practices.
+# ShopCore E-commerce System
+A premium tech accessories e-commerce platform built with modern software engineering practices for the SESD course.
+
+---
 
 ## Grading Rubric Breakdown
 - **75% Backend** (Node.js, Express, TypeScript)
 - **25% Frontend** (React, Vite)
+
+---
 
 ## Tech Stack
 ### Backend
 - **Runtime**: Node.js
 - **Framework**: Express
 - **Language**: TypeScript
-- **Data Storage**: In-memory (mocked with singleton pattern)
+- **Data Storage**: In-memory (singleton pattern)
 ### Frontend
 - **Library**: React
 - **Build Tool**: Vite
 - **Styling**: Custom CSS (no external libraries)
+
+---
 
 ## Architectural Principles
 ### 1. Layered Architecture
@@ -41,6 +47,57 @@ src/
 - **Singleton Pattern**: `MockDatabase` class ensures only one data store instance
 - **Repository Pattern**: Abstracts data access for User/Product/Order
 
+---
+
+## Local Development
+### Backend
+```bash
+cd sesd
+npm install
+npm run dev
+# Backend runs at http://localhost:3000
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+# Frontend runs at http://localhost:5173
+```
+
+---
+
+## Deployment Instructions
+### 1. Option: Vercel (Frontend) + Render (Backend)
+This is the simplest and most popular free deployment option for this tech stack.
+
+#### Step 1: Deploy Backend to Render
+1. Go to [Render](https://render.com) and sign up/login with GitHub
+2. Click "New +" → "Web Service"
+3. Connect your `sesd` GitHub repo
+4. Configure:
+   - **Name**: `shopcore-backend`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm run start` (add this script to your package.json first!)
+   - **Instance Type**: Free
+5. Click "Create Web Service"
+6. Wait for deployment to finish, then copy your backend URL (e.g., `https://shopcore-backend.onrender.com`)
+7. Update `API_URL` in `frontend/src/App.jsx` to point to this URL!
+
+#### Step 2: Deploy Frontend to Vercel
+1. Go to [Vercel](https://vercel.com) and sign up/login with GitHub
+2. Click "Add New..." → "Project"
+3. Import your `sesd` GitHub repo
+4. In "Project Settings":
+   - **Root Directory**: `frontend`
+   - **Framework Preset**: Vite
+5. Click "Deploy"
+6. Update your CORS origin in `src/index.ts` to include your Vercel frontend URL!
+
+---
+
 ## Domain Models
 ### User Hierarchy
 - **User (abstract)**: Base class with id, name, email, role, createdAt
@@ -50,18 +107,7 @@ src/
 - **Product**: id, name, description, price, stockQuantity, category
 - **Order**: id, customerId, items (OrderItem[]), status (OrderStatus enum), totalAmount, createdAt
 
-## Mock Data
-### Products (Premium Tech Accessories)
-- Keychron K8 Pro QMK/VIA Mechanical Keyboard ($199)
-- Anker 737 Power Bank (PowerCore 24K) ($149.99)
-- Sony WH-1000XM5 Wireless Headphones ($399.99)
-- CalDigit TS4 Thunderbolt 4 Dock ($399.99)
-- Logitech MX Master 3S for Mac ($99.99)
-- Satechi USB4 Pro Multiport Adapter ($79.99)
-
-### Users
-- **Admin**: Sarah Chen (Inventory & Operations)
-- **Customers**: Marcus Johnson, Aisha Patel
+---
 
 ## API Endpoints
 ### Root
@@ -80,6 +126,8 @@ src/
 - `POST /api/orders`: Create a new order (validates stock first)
 - `POST /api/orders/payment`: Process payment for an order (uses Strategy Pattern)
 
+---
+
 ## Frontend Features
 - Product grid with modern card styling
 - Interactive cart (add/remove items, update quantities)
@@ -87,19 +135,3 @@ src/
 - Checkout flow (order creation + payment processing)
 - Responsive design (mobile-friendly)
 - Modern UI: gradients, soft shadows, hover states
-
-## Getting Started
-### Backend
-```bash
-cd sesd
-npm install
-npm run dev
-# Server runs at http://localhost:3000
-```
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-# Frontend runs at http://localhost:5173
-```
