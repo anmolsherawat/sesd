@@ -1,33 +1,27 @@
 import express from 'express';
 import cors from 'cors';
-import userRoutes from './routes/userRoutes';
-import productRoutes from './routes/productRoutes';
-import orderRoutes from './routes/orderRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// Middleware setup
+// Enable CORS for frontend requests (from typical Vite dev port)
+app.use(cors({ origin: ['http://localhost:5173'] }));
 app.use(express.json());
 
+// Root health check endpoint
 app.get('/', (req, res) => {
   res.json({ 
-    message: 'ShopCore API - SESD E-commerce System',
-    status: 'running',
-    endpoints: {
-      users: '/api/users',
-      products: '/api/products',
-      orders: '/api/orders'
-    }
+    name: 'ShopCore API',
+    description: 'Premium Tech Accessories E-commerce System',
+    status: 'online',
+    version: '1.0.0'
   });
 });
 
-app.use('/api/users', userRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
-
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 ShopCore API running on http://localhost:${PORT}`);
 });
 
 export default app;
