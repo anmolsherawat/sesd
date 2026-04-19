@@ -8,8 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware setup
-// Enable CORS for frontend requests (from typical Vite dev port)
-app.use(cors({ origin: ['http://localhost:5173'] }));
+// Enable CORS for both localhost and Vercel frontend
+app.use(cors({ origin: ['http://localhost:5173', 'https://sesd-inky.vercel.app'] }));
 app.use(express.json());
 
 // Root health check endpoint with API documentation
