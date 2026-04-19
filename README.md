@@ -68,36 +68,6 @@ npm run dev
 
 ---
 
-## Deployment Instructions
-### 1. Option: Vercel (Frontend) + Render (Backend)
-This is the simplest and most popular free deployment option for this tech stack.
-
-#### Step 1: Deploy Backend to Render
-1. Go to [Render](https://render.com) and sign up/login with GitHub
-2. Click "New +" → "Web Service"
-3. Connect your `sesd` GitHub repo
-4. Configure:
-   - **Name**: `shopcore-backend`
-   - **Runtime**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm run start` (add this script to your package.json first!)
-   - **Instance Type**: Free
-5. Click "Create Web Service"
-6. Wait for deployment to finish, then copy your backend URL (e.g., `https://shopcore-backend.onrender.com`)
-7. Update `API_URL` in `frontend/src/App.jsx` to point to this URL!
-
-#### Step 2: Deploy Frontend to Vercel
-1. Go to [Vercel](https://vercel.com) and sign up/login with GitHub
-2. Click "Add New..." → "Project"
-3. Import your `sesd` GitHub repo
-4. In "Project Settings":
-   - **Root Directory**: `frontend`
-   - **Framework Preset**: Vite
-5. Click "Deploy"
-6. Update your CORS origin in `src/index.ts` to include your Vercel frontend URL!
-
----
-
 ## Domain Models
 ### User Hierarchy
 - **User (abstract)**: Base class with id, name, email, role, createdAt
